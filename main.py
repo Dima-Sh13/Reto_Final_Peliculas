@@ -1,0 +1,1 @@
+from movies_app import app

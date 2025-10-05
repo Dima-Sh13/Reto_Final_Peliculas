@@ -5,41 +5,47 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
       const modal = new bootstrap.Modal(document.getElementById("movieModal"));
-      modal.show(); // se abre al cargar la página
+      modal.show();
     });
-  </script>
-<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+</script>
+<div class="modal fade " id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{data["Title"]}}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        <div class="modal-body">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Clave</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for key, value in data.items() %}
-                    <tr>
-                        <td>{{ key }}</td>
-                        <td>{{ value }}</td>
-                    </tr>
-                    {% endfor %}    
-                </tbody>   
-            </table>
-        </div>
-        <div class="modal-footer">
-            <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></a>
+            <div class="modal-body">
+                <img src="{{data[Poster]}}" alt="">
+                
+                
+                
+                
+                
+                <table style="padding: 10%;">
+                    <thead>
+                        <tr>
+                            <th>Clave</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, value in data.items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endfor %}    
+                    </tbody>   
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></a>
             
+             </div>
         </div>
     </div>
 </div>
-
 
 
 

@@ -15,6 +15,7 @@ class ConexionApi():
         self.answer = req.get(self.url)
         self.answer = self.answer.json()
         return self.answer
+        
 
 
 class ConexionBd():

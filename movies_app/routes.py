@@ -9,21 +9,23 @@ def index():
     api = ConexionApi(API_KEY)
     
     if request.method == "GET":
-        return render_template("Index.html")
+        return render_template("index.html")
     else:
         movieName = get_name(request.form["movieName"])
-        movieData= api.search_by_name(movieName)
-        return render_template("index.html", data = movieData)
+        
+        return redirect(f"movie/{movieName}")
         
     
-"""
-@app.route("/movie/<idn>")
+
+@app.route("/movie/<idn>", methods=["GET","POST"])
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
-
-    return render_template("movie_view.html", data = details)
-"""        
+    
+    if request.method == "POST":
+        return render_template("movie_view.html", data = details)
+    else:
+        return render_template("movie_view.html", data = details)    
 
 
 

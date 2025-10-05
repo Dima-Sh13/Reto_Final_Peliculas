@@ -1,11 +1,20 @@
-from requests import request
+import requests as req
 import sqlite3
-from config import ORIGIN_DATA
+from config import ORIGIN_DATA, API_KEY
 
 
 
 class ConexionApi():
-    pass
+    def __init__(self,apikey):
+        self.url= ""
+        self.answer = None
+        self.apiKey = apikey
+
+    def search_by_name(self,name):
+        self.url = f"http://www.omdbapi.com/?t={name}&{self.apiKey}"
+        self.answer = req.get(self.url)
+        self.answer = self.answer.json()
+        return self.answer
 
 
 class ConexionBd():

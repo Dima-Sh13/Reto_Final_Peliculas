@@ -4,6 +4,11 @@ from movies_app.models import *
 from config import *
 
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
-    return render_template("index.html")
+    api = ConexionApi(API_KEY)
+    datos = api.search_by_name()
+    if request.method == "GET":
+        return render_template("Index.html")
+  
+    return render_template("index.html", data= datos)

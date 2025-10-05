@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+
+<img src={{data[Poster]}} class="rounded float-start">
+
+<p>"{{data[Poster]}}"</p>
+
+
+
+
+
+
+
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Clave</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in data.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}    
+    </tbody>   
+</table>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

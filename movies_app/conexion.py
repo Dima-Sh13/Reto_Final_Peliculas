@@ -11,11 +11,16 @@ class ConexionApi():
         self.apiKey = apikey
 
     def search_by_name(self,name):
-        self.url = f"http://www.omdbapi.com/?t={name}&{self.apiKey}"
+        self.url = f"http://www.omdbapi.com/?t={name}&plot=full&{self.apiKey}"
         self.answer = req.get(self.url)
         self.answer = self.answer.json()
         return self.answer
-        
+    def get_recent(self, name, year):
+        self.url = f"http://www.omdbapi.com/?t={name}&y={year}&plot=full&{self.apiKey}"
+        self.answer = req.get(self.url)
+        self.answer = self.answer.json()
+        return self.answer
+                      
 
 
 class ConexionBd():

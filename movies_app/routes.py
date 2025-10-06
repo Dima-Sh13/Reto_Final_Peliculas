@@ -2,14 +2,18 @@ from movies_app import app
 from flask import jsonify, render_template, request, redirect
 from movies_app.models import *
 from config import *
-
+from datetime import date
 
 @app.route("/", methods=["GET","POST"])
 def index():
     api = ConexionApi(API_KEY)
-    
+    rec =[]
     if request.method == "GET":
-        return render_template("index.html")
+        for i in ABC:
+            rec.append(api.get_recent(i,"2025"))
+
+            
+        return render_template("index.html", recent = rec)
     else:
         movieName = get_name(request.form["movieName"])
         

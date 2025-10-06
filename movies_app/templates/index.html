@@ -33,6 +33,89 @@
 
 
 
+        <section class="container">
+            {% block content %}
+            <div class="container"></div>
+            
+                <div class="col">
+                    {% for item in recent %}
+                    
+                    
+                        
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <img class="img-fluid" src="{{ item['Poster'] }}" alt=" {{ item['Title'] }}">
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-8 col-sm-9">
+                                        <p class="text-mine-sub">{{ item['Plot'] }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-8 col-sm-9"> 
+                                    <div class="row">
+                                        <div class="col"><h5>Genre:</h5></div>
+                                        <div class="col"><p>{{ item["Genre"] }}</p> </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><h5>Duration:</h5></div><div class="col"><p>{{ item["Runtime"] }}</p> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><h5>Staring:</h5></div><div class="col"><div class="col"><p>{{ item["Actors"] }}</p></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>    
+                                    
+
+                                    
+                                    
+                                    
+
+                    {% endfor %}        
+                    
+                    
+                    
+                    
+                          
+
+                    
+                </div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            
+            
+            
+            
+            
+            {% endblock %}
+            
+        </section>
 
 
                        
@@ -49,28 +132,6 @@
 
 
     
-        <section>
-            {% block content %}
-               
-           
-                                        
-            
-          
-        
-
-        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            {% endblock %}
-            
-        </section>
     </div>
 
 

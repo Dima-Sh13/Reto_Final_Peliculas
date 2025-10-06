@@ -24,3 +24,17 @@
 
 
 }
+.text-mine-sub {
+  font-size: medium !important;
+  font-weight: bolder !important;
+  font-style: italic;
+
+
+}
+
+.text-mine-big{ 
+  font-size: xx-large;
+  font-weight: bolder;
+  font-style: initial;
+
+}

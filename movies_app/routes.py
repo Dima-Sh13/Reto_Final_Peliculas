@@ -21,6 +21,7 @@ def index():
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
+    print(type(details["Poster"]))
     
     if request.method == "POST":
         return render_template("movie_view.html", data = details)

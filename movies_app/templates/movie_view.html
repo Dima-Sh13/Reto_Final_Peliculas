@@ -8,15 +8,15 @@
       modal.show();
     });
 </script>
-<div class="modal fade " id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="movieModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{data["Title"]}}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+                <h1 class="modal-title fs-5 text-mine-big" id="exampleModalLabel">{{data["Title"]}}</h1>
+                
+            </div></button>
             <div class="modal-body">
-                <img src="{{data[Poster]}}" alt="">
+                <img class="img-fluid" src="{{ data['Poster'] }}" alt=" {{ data['Title'] }}"> <p class="text-mine-sub">{{ data["Plot"] }}</p>
                 
                 
                 

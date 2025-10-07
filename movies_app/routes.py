@@ -27,14 +27,21 @@ def detailde_view(idn):
     details = api.search_by_name(idn)
     
     
+    
     if request.method == "POST":
         
-        insert([details['imdbID'],request.form["commentsInput"],details['imdbRating']])
+        insert_comment([details['imdbID'],request.form["commentsInput"]])
         return render_template("movie_view.html", data = details)
     
     else:
-        return render_template("movie_view.html", data = details)  
-          
+        
+        bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
+        bd1 = bd.fetchall()
+        
+            
+        
+        return render_template("movie_view.html", data = details, comments = bd1)  
+
 
 
 

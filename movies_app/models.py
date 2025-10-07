@@ -16,11 +16,13 @@ def get_name(name):
 
     return fName 
             
-def insert(registroForm):
+def insert_comment(registroForm):
     conexion = sqlite3.connect(ORIGIN_DATA)
     cur = conexion.cursor()
-    res = cur.execute("INSERT INTO movies (id, comments, rating) VALUES (?,?,?);",registroForm)
-    conexion.commit()#funcion para validar el registro antes de guardarlo
+    
+    res = cur.execute(f"INSERT INTO comments (movie_id, comment) VALUES ('{registroForm[0]}', '{registroForm[1]}')")
+   
+    #conexion.commit()#funcion para validar el registro antes de guardarlo
 
     conexion.close()   
     

@@ -9,8 +9,8 @@ def index():
     api = ConexionApi(API_KEY)
     rec =[]
     if request.method == "GET":
-        for i in ABC:
-            rec.append(api.get_recent(i,"2025"))
+        #for i in ABC:
+         #   rec.append(api.get_recent(i,"2025"))
 
             
         return render_template("index.html", recent = rec)
@@ -25,10 +25,11 @@ def index():
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
-    print(type(details["Poster"]))
+    bd = ConexionBd("INSERT INTO movies (id, comments, rating) VALUES (?,?,?);")
     
     if request.method == "POST":
         return render_template("movie_view.html", data = details)
+    
     else:
         return render_template("movie_view.html", data = details)    
 

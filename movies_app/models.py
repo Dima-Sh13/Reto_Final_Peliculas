@@ -1,4 +1,5 @@
 from movies_app.conexion import *
+import sqlite3
 
 def insert_comment(registro):
     connectInsert = ConexionBd(f"INSERT INTO movies (id, comment) VALUES (?,?);", registro) # type: ignore
@@ -15,5 +16,11 @@ def get_name(name):
 
     return fName 
             
-   
+def insert(registroForm):
+    conexion = sqlite3.connect(ORIGIN_DATA)
+    cur = conexion.cursor()
+    res = cur.execute("INSERT INTO movies (id, comments, rating) VALUES (?,?,?);",registroForm)
+    conexion.commit()#funcion para validar el registro antes de guardarlo
+
+    conexion.close()   
     

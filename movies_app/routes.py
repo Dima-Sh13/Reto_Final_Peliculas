@@ -25,13 +25,16 @@ def index():
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
-    bd = ConexionBd("INSERT INTO movies (id, comments, rating) VALUES (?,?,?);")
+    
     
     if request.method == "POST":
+        
+        insert([details['imdbID'],request.form["commentsInput"],details['imdbRating']])
         return render_template("movie_view.html", data = details)
     
     else:
-        return render_template("movie_view.html", data = details)    
+        return render_template("movie_view.html", data = details)  
+          
 
 
 

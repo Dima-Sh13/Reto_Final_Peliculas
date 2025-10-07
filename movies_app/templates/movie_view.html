@@ -12,7 +12,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3 text-mine-big">{{data["Title"]}}</h1> 
+                <h1 class="modal-title fs-3 text-mine-big">{{ data["Title"] }}</h1> 
                 
             </div></button>
             <div class="modal-body">
@@ -56,9 +56,12 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <form method="post" class="d-flex">
+                                                        <input type="hidden" name="id" value="{{ data['imbdID'] }}">
+                                                        <input type="hidden" name="rating" value="{{ data['imbdRating'] }}">
                                                         <input class="form-control me-2" placeholder="Leave a comment here!" aria-label="Search" type="text" id="commentsInput" name="commentsInput">
                                                         <button class="btn btn-outline-success" type="submit">Post!</button>
                                                     </form>
+
                                                 </div>
                                             </div>
                                         </div>

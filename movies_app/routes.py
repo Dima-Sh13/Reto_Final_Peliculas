@@ -36,6 +36,7 @@ def detailde_view(idn):
     if request.method == "POST":
         
         insert_comment([details['imdbID'],request.form["commentsInput"]])
+        print(request.form)
         return render_template("movie_view.html", data = details,  comments = listaComments)
     
     else:

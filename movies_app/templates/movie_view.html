@@ -19,7 +19,20 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img class="img-fluid" src="{{ data['Poster'] }}" alt=" {{ data['Title'] }}">
+                            <img class="img-fluid" src="{{ data['Poster'] }}" alt=" {{ data['Title'] }}"><br>
+                            <form method="post">
+                                <div class="stars">
+                                    <span class="fa fa-star" data-value="2"></span>
+                                    <span class="fa fa-star" data-value="4"></span>
+                                    <span class="fa fa-star" data-value="6"></span>
+                                    <span class="fa fa-star" data-value="8"></span>
+                                    <span class="fa fa-star" data-value="10"></span>
+                                </div>
+                                <input type="hidden" name="rating" id = "rating">
+                                <button class="btn-secondary" type="submit">Rate!</button>
+                                    
+                                
+                            </form>    
                         </div>
                     <div class="col-sm-9">
                         <div class="row">

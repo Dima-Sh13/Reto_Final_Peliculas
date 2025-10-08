@@ -43,3 +43,26 @@
 .pad-right-10 {
     padding-right: 10%;
 }
+
+
+
+.fa-star {
+  font-size: 25px;
+  color: lightgray;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 5px;
+
+}
+
+
+.fa-star:hover,
+.fa-star:hover ~ .fa-star {
+  color: gold;
+}

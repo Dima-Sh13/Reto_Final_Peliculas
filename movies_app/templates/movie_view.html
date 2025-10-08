@@ -43,11 +43,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-
-                                        <p>
-                                            {{ comments }}
-                                        </p>
+                                        <ul class="list-group list-group-flush overflow-auto" style="max-height: 180px;">
+                                            {% for i in comments %}
+                                            <li class="list-group-item">"{{ i }}"</li>
+                                            {% endfor %}    
+                                        </div>
                                     </div>
+                                        
+
+
+                                    
+                                        
+                                        
+                                        
 
                                 </div>
                                 <div class="row">

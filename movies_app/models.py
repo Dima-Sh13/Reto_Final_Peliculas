@@ -22,7 +22,7 @@ def insert_comment(registroForm):
     
     res = cur.execute(f"INSERT INTO comments (movie_id, comment) VALUES ('{registroForm[0]}', '{registroForm[1]}')")
    
-    #conexion.commit()#funcion para validar el registro antes de guardarlo
+    conexion.commit()#funcion para validar el registro antes de guardarlo
 
     conexion.close()   
     

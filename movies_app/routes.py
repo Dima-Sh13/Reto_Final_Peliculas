@@ -25,22 +25,31 @@ def index():
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
+    bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
+    listaBD = bd.res.fetchall()
+    listaComments = []
+    for i in listaBD:
+            listaComments.append(i[2])
     
     
     
     if request.method == "POST":
         
         insert_comment([details['imdbID'],request.form["commentsInput"]])
-        return render_template("movie_view.html", data = details)
+        return render_template("movie_view.html", data = details,  comments = listaComments)
     
     else:
         
-        bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
-        bd1 = bd.fetchall()
+        return render_template("movie_view.html", data = details, comments = listaComments)  
+
+
+
+
+
+        
         
             
         
-        return render_template("movie_view.html", data = details, comments = bd1)  
 
 
 

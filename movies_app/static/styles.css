@@ -61,6 +61,11 @@
 
 }
 
+.fa-star.checked {
+  color: gold;
+}
+
+
 
 .fa-star:hover,
 .fa-star:hover ~ .fa-star {

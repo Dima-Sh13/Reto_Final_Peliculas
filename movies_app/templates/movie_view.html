@@ -7,6 +7,20 @@
       const modal = new bootstrap.Modal(document.getElementById("movieModal"));
       modal.show();
     });
+
+
+    
+    document.querySelectorAll(".stars .fa-star").forEach(star => {
+        star.addEventListener("click", function() {
+            document.getElementById("rating").value = this.getAttribute("data-value");
+            document.querySelectorAll(".stars .fa-star").forEach(s => s.classList.remove("checked"));
+            this.classList.add("checked");
+        });
+    });
+        
+
+            
+</script>
 </script>
 <div class="modal fade " id="movieModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="movieModal" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -20,19 +34,31 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <img class="img-fluid" src="{{ data['Poster'] }}" alt=" {{ data['Title'] }}"><br>
-                            <form method="post">
+                            <form  method="post">
                                 <div class="stars">
-                                    <span class="fa fa-star" data-value="2"></span>
-                                    <span class="fa fa-star" data-value="4"></span>
-                                    <span class="fa fa-star" data-value="6"></span>
-                                    <span class="fa fa-star" data-value="8"></span>
                                     <span class="fa fa-star" data-value="10"></span>
+                                    <span class="fa fa-star" data-value="8"></span>
+                                    <span class="fa fa-star" data-value="6"></span>
+                                    <span class="fa fa-star" data-value="4"></span>
+                                    <span class="fa fa-star" data-value="2"></span>
                                 </div>
                                 <input type="hidden" name="rating" id = "rating">
+                                <input type="hidden" name="movieID" id="movieID" value="{{ data['imdbID'] }}">
                                 <button class="btn-secondary" type="submit">Rate!</button>
                                     
                                 
-                            </form>    
+                            </form>  
+                            <script>
+                                 document.querySelectorAll(".stars .fa-star").forEach(star => {
+                                    star.addEventListener("click", function() {
+                                        document.getElementById("rating").value = this.getAttribute("data-value");
+                                        document.querySelectorAll(".stars .fa-star").forEach(s => s.classList.add("checked"));
+                                        // this.classList.add("checked");
+                                    });
+                                });
+
+
+                            </script>  
                         </div>
                     <div class="col-sm-9">
                         <div class="row">

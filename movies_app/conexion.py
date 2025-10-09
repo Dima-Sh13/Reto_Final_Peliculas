@@ -20,7 +20,12 @@ class ConexionApi():
         self.answer = req.get(self.url)
         self.answer = self.answer.json()
         return self.answer
-                      
+    def search_by_year(self,name,year):
+        self.url = f"http://www.omdbapi.com/?t={name}&y={year}&plot=full&{self.apiKey}" 
+        self.answer = req.get(self.url)
+        self.answer = self.answer.json()
+        return self.answer                
+        
 
 
 class ConexionBd():

@@ -71,3 +71,8 @@
 .fa-star:hover ~ .fa-star {
   color: gold;
 }
+
+.short-form {
+  width: 130px;
+
+}

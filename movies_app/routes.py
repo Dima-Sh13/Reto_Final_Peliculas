@@ -39,21 +39,13 @@ def detailde_view(idn):
         
         else:
             insert_rating([request.form["movieID"], request.form["rating"]])
+            print(request.form)
         
         return render_template("movie_view.html", data = details,  comments = listaComments)
     
     else:
         
         return render_template("movie_view.html", data = details, comments = listaComments)  
-
-@app.route("/ratings/<title>", methods= ["GET","POST"])
-def rating(title):
-    if request. method == "POST":
-        movie_name = get_name(title)
-        movie_name = movie_name.lower()
-        print(request.form)
-        #insert_rating([request.form["movieID"],request.form["rating"]])
-        
 
 
      

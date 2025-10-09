@@ -76,3 +76,26 @@
   width: 130px;
 
 }
+
+.wtw-button {
+  color: rgb(9, 15, 1);
+  background-color: greenyellow;
+  font-weight: bold;
+
+}
+
+.wtw-bck {
+  background-color: darkgray;
+
+}
+
+.wtw-text {
+  font-size: 40px;
+  color: greenyellow;
+  
+  text-shadow: 
+    -1px -1px 0 white,
+     1px -1px 0 white,
+    -1px  1px 0 white,
+     1px  1px 0 white;             
+}

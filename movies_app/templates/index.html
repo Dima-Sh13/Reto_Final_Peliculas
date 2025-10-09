@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body style="height: 100%;" >
+<body class="wtw-bck" style="height: 100%;" >
   
         <header  >
             <nav class="navbar fixed-top bg-body-tertiary bg-obsidian">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-bigwhite">WhatToWatch</a>
+                    <a href="/" class="navbar-brand text-bigwhite wtw-text">WhatToWatch</a>
                         
                     <div class="container text-center">
                         <div class="row">
@@ -22,7 +22,7 @@
                                 <form method="post" class="d-flex">
                                     <input class="form-control me-2" placeholder="Search by Movie name" aria-label="Search" type="text" id="movieName" name="movieName">
                                     <input class="form-control me-2 short-form" placeholder="Year (optional)" aria-label="Search" type="text" id="movieYear" name="movieYear">
-                                    <button class="btn btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
+                                    <button class="btn btn-outline-success wtw-button" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
                                 </form>
                             </div>
 
@@ -139,10 +139,13 @@
 
 
 
-
+    <footer>
+    Dev: Dmytro Shalupnya
+    </footer>
 
     
 </body>
+
 </html>
 
 

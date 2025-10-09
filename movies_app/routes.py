@@ -2,7 +2,8 @@ from movies_app import app
 from flask import jsonify, render_template, request, redirect
 from movies_app.models import *
 from config import *
-from datetime import date
+from datetime import datetime
+
 
 @app.route("/", methods=["GET","POST"])
 def index():
@@ -15,10 +16,14 @@ def index():
             
         return render_template("index.html", recent = rec)
     else:
-        movieName = get_name(request.form["movieName"])
+        if request.form["movieYear"] == "":
+            movieName = get_name(request.form["movieName"])
         
-        return redirect(f"movie/{movieName}")
-        
+            return redirect(f"movie/{movieName}")
+        else:
+            for i in ABC:
+                rec.append(api.get_recent(i,request.form["movieYear"]))
+
     
 
 @app.route("/movie/<idn>", methods=["GET","POST"])

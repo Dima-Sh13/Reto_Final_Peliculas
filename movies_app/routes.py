@@ -2,7 +2,10 @@ from movies_app import app
 from flask import jsonify, render_template, request, redirect
 from movies_app.models import *
 from config import *
-from datetime import datetime
+from datetime import date
+
+today = date.today()
+today_str = fecha_str = today.strftime("%d-%m-%Y")
 
 
 @app.route("/", methods=["GET","POST"])
@@ -24,12 +27,16 @@ def index():
             for i in ABC:
                 rec.append(api.get_recent(i,request.form["movieYear"]))
 
+            return render_template("index.html", recent = rec)    
+
     
 
 @app.route("/movie/<idn>", methods=["GET","POST"])
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
+    
+    
     bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
     listaBD = bd.res.fetchall()
     listaComments = []
@@ -40,7 +47,7 @@ def detailde_view(idn):
     
     if request.method == "POST":
         if request.form["rating"]== "":
-            insert_comment([details['imdbID'],request.form["commentsInput"]])
+            insert_comment([details['imdbID'],request.form["commentsInput"],request.form["commentsName"],today_str])
         
         else:
             insert_rating([request.form["movieID"], request.form["rating"]])
@@ -57,7 +64,11 @@ def detailde_view(idn):
 
 
 
-        
+@app.route("/prueba/<id>")
+def prueba(id):
+    api = ConexionApi(API_KEY)
+    details = api.search_by_id(id)
+    return render_template("prueba.html", prueba= details['imdbID'])        
         
             
         

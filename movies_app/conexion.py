@@ -25,7 +25,11 @@ class ConexionApi():
         self.answer = req.get(self.url)
         self.answer = self.answer.json()
         return self.answer                
-        
+    def search_by_id(self,id):
+        self.url = f"http://www.omdbapi.com/?i={id}&plot=full&{self.apiKey}"
+        self.answer = req.get(self.url)
+        self.answer = self.answer.json()
+        return self.answer    
 
 
 class ConexionBd():

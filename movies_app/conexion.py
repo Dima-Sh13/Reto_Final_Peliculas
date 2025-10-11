@@ -10,6 +10,16 @@ class ConexionApi():
         self.answer = None
         self.apiKey = apikey
 
+    def get_name(self, name):
+        fName = []
+        for i in name:
+            if i == " ":
+                i = "+"
+            fName.append(i)
+        fName = "".join(fName)
+
+        return fName
+
     def search_by_name(self,name):
         self.url = f"http://www.omdbapi.com/?t={name}&plot=full&{self.apiKey}"
         self.answer = req.get(self.url)
@@ -37,4 +47,17 @@ class ConexionBd():
         self.con = sqlite3.connect(ORIGIN_DATA)
         self.cur = self.con.cursor()
         self.res = self.cur.execute(querySql, params)
+
+    def insert_comment(self, registroForm):
+        self.res = self.cur.execute(f"INSERT INTO comments (movie_id, comment, user, date) VALUES ('{registroForm[0]}', '{registroForm[1]}', '{registroForm[2]}', '{registroForm[3]}')")
+        self.con.commit()
+        self.con.close()    
         
+    def insert_rating(self, registroForm):
+        self.res = self.cur.execute(f"INSERT INTO ratings (movie_id, rating) VALUES ('{registroForm[0]}', '{registroForm[1]}')")
+        self.con.commit()
+        self.con.close()
+        
+       
+    
+    

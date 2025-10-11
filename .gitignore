@@ -3,3 +3,4 @@ movies_app\__pycache__
 **/venv
 readme.md
 sucio.py
+movies_app/models.py

@@ -33,4 +33,4 @@ def insert_rating(registroForm):
     conexion.commit()
 
     conexion.close()    
-   
+      

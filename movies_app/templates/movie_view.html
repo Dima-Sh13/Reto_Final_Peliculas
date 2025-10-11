@@ -10,14 +10,14 @@
           
 </script>
 </script>
-<div class="modal fade " id="movieModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="movieModal" aria-hidden="true">
+<div class="modal fade" id="movieModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="movieModal" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-3 text-mine-big">{{ data["Title"] }}</h1> 
                 
             </div></button>
-            <div class="modal-body">
+            <div class="modal-body padding-entero">
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-sm-3">
@@ -106,8 +106,8 @@
                                                         <input type="hidden" name="id" value="{{ data['imbdID'] }}">
                                                         <input type="hidden" name="rating" value="{{ data['imbdRating'] }}">
                                                         <input class="form-control me-2" placeholder="Leave a comment here!" aria-label="Search" type="text" id="commentsInput" name="commentsInput">
-                                                        <input class="form-control me-2 short-form" placeholder="(Your name)" type="text" id="commentsName" name="commentsName">
-                                                        <button class="btn btn-outline-success" type="submit">Post!</button>
+                                                        <input class="form-control me-2 short-form" placeholder="(Your name)" type="text" id="commentsName" name="commentsName" required>
+                                                        <button class="btn btn-outline-success wtw-button" type="submit">Post!</button>
                                                     </form>
 
                                                 </div>
@@ -122,8 +122,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></a>
+            <div class="modal-footer" style="padding: 0%;">
+                <a href="/"><button type="button" class="btn btn-outline-success wtw-button" data-bs-dismiss="modal">Close</button></a>
             </div>
         </div>
     </div>

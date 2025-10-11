@@ -141,3 +141,11 @@
 
 
 }
+
+.padding-entero {
+  padding: 5% !important;   
+    
+  box-sizing: border-box !important; 
+  width: 100% !important;            
+  height: 100% !important;           
+}

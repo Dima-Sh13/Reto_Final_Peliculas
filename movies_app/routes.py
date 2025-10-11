@@ -15,13 +15,13 @@ def index():
     
     if request.method == "GET":
         #for i in ABC:
-         #   rec.append(api.get_recent(i,"2025"))
+            #rec.append(api.get_recent(i,"2025"))
 
             
         return render_template("index.html", recent = rec)
     else:
         if request.form["movieYear"] == "":
-            #movieName = get_name(request.form["movieName"])
+            
             movieName = api.get_name(request.form["movieName"])
             return redirect(f"movie/name/{movieName}")
         else:
@@ -48,7 +48,7 @@ def detailde_view(idn):
             listaComments.append([i[2],i[3],i[4]])
     except Exception as e:
         return render_template("error.html")
-        #listaComments= [["Hmmm.Something went wrong. Try again pls"]]
+      
     
     
     
@@ -73,7 +73,7 @@ def detailde_view(idn):
 
 
 
-@app.route("/movie/id/<idn>")
+@app.route("/movie/id/<idn>", methods = ["GET","POST"])
 def prueba(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_id(idn)
@@ -88,12 +88,12 @@ def prueba(idn):
     if request.method == "POST":
         if request.form["rating"]== "":
             bd.insert_comment([details['imdbID'],request.form["commentsInput"],request.form["commentsName"],today_str])
-            return redirect(f"/movie/name/{idn}")
+            return redirect(f"/movie/id/{idn}")
         else:
             bd.insert_rating([request.form["movieID"], request.form["rating"]])
-            return redirect(f"/movie/name/{idn}")
+            return redirect(f"/movie/id/{idn}")
         
-        return render_template("movie_view.html", data = details,  comments = listaComments)
+        
     
     else:
         

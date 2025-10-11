@@ -100,3 +100,35 @@
      1px  1px 0 white;             
 }
 
+.my-padding {
+  padding-top: 125px;
+
+}
+
+.link-div{
+  display: block !important;
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.plot-text {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  
+}
+
+.list-bck {
+  background-color: black;
+
+
+}
+
+.date-comment {
+  
+  font-size: 0.7rem;     
+  position: absolute;    
+  right: 0;              
+  top: 0;                
+}

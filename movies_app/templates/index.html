@@ -11,81 +11,93 @@
 </head>
 <body class="wtw-bck" style="height: 100%;" >
   
-        <header  >
-            <nav class="navbar fixed-top bg-body-tertiary bg-obsidian">
-                <div class="container-fluid">
-                    <a href="/" class="navbar-brand text-bigwhite wtw-text">WhatToWatch</a>
-                        
-                    <div class="container text-center">
-                        <div class="row">
-                            <div class="col">
-                                <form method="post" class="d-flex">
-                                    <input class="form-control me-2" placeholder="Search by Movie name" aria-label="Search" type="text" id="movieName" name="movieName">
-                                    <input class="form-control me-2 short-form" placeholder="Year (optional)" aria-label="Search" type="text" id="movieYear" name="movieYear">
-                                    <button class="btn btn-outline-success wtw-button" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
-                                </form>
-                            </div>
+    <header  >
+        <nav class="navbar sticky-top bg-body-tertiary bg-obsidian">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand text-bigwhite wtw-text">WhatToWatch</a>
+                    
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <form method="post" class="d-flex">
+                                <input class="form-control me-2" placeholder="Search by Movie name" aria-label="Search" type="text" id="movieName" name="movieName">
+                                <input class="form-control me-2 short-form" placeholder="Year (optional)" aria-label="Search" type="text" id="movieYear" name="movieYear">
+                                <button class="btn btn-outline-success wtw-button" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
+                            </form>
+                        </div>
 
-                         </div>
+                        </div>
 
-                    </div>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
 
 
-        <section class="container">
-            {% block content %}
-            <div class="container"></div>
-            
+    <section class="container my-padding" >
+        {% block content %}
+            <div class="container">
+        
                 <div class="col">
                     {% for item in recent %}
                     
                     
-                        
-                        <div href="/movie/movie" class="row">
+                    <a href="/movie/id/{{ item['imdbID'] }}" class="link-div">
+                        <div class="row align-items-start g-3 py-3 border-bottom">
                             <div class="col-sm-3">
                                 <img class="img-fluid" src="{{ item['Poster'] }}" alt=" {{ item['Title'] }}">
                             </div>
                             <div class="col-sm-9">
+                                <p class="text-mine-sub plot-text">{{ item['Plot'] }}</p>
                                 <div class="row">
-                                    <div class="col-8 col-sm-9">
-                                        <p class="text-mine-sub">{{ item['Plot'] }}</p>
-                                    </div>
+                                    <div class="col-4 col-sm-3"><h5 class="mb-1 plot-text" style="font-weight: bolder;">Genre:</h5></div>
+                                    <div class="col-8 col-sm-9"><p class="mb-2 plot-text">{{ item["Genre"] }}</p></div>
+                                </div>    
+                                <div class="row">
+                                    <div class="col-4 col-sm-3"><h5 class="mb-1 plot-text" style="font-weight: bolder;">Duration:</h5></div>
+                                    <div class="col-8 col-sm-9"><p class="mb-2 plot-text" >{{ item["Runtime"] }}</p></div>
                                 </div>
-                                
-                                <div class="col-8 col-sm-9"> 
-                                    <div class="row">
-                                        <div class="col"><h5>Genre:</h5></div>
-                                        <div class="col"><p>{{ item["Genre"] }}</p> </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><h5>Duration:</h5></div><div class="col"><p>{{ item["Runtime"] }}</p> </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><h5>Staring:</h5></div><div class="col"><div class="col"><p>{{ item["Actors"] }}</p></div>
-                                        
-                                    </div>
+                                <div class="row">
+                                    <div class="col"><h5 class="mb-1 plot-text" style="font-weight: bolder;">Duration:</h5></div><div class="col"></div>
+                                    <div class="col-8 col-sm-9"><p class="mb-2 plot-text">{{ item["Runtime"] }}</p></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 col-sm-3"><h5 class="mb-1 plot-text" style="font-weight: bolder;">Starring:</h5></div>
+                                    <div class="col-8 col-sm-9"><p class="mb-0 plot-text">{{ item["Actors"] }}</p></div>
                                 </div>
                             </div>    
                         </div>    
-                                    
-
-                                    
-                                    
-                                    
-
+                    </a>            
                     {% endfor %}        
                     
-                    
-                    
-                    
-                          
-
-                    
                 </div>   
+            </div>
+                                
+        {% endblock %}
+                                
+    </section>
+                                
+                                
+                                    
+                            
+                                    
+                                    
+                                    
+
+                    
+                    
+                    
+                    
+                        
+
+                    
+
+                
+
+
+</body>
 
 
 
@@ -93,11 +105,10 @@
 
 
 
-
-
-
-
-
+    
+        
+    
+</html>
 
                 
                 
@@ -115,9 +126,7 @@
             
             
             
-            {% endblock %}
             
-        </section>
 
 
                        
@@ -134,19 +143,11 @@
 
 
     
-    </div>
-
-
-
-
-    <footer>
-    Dev: Dmytro Shalupnya
-    </footer>
-
     
-</body>
 
-</html>
+
+
+
 
 
 

@@ -22,7 +22,7 @@ def index():
         if request.form["movieYear"] == "":
             movieName = get_name(request.form["movieName"])
         
-            return redirect(f"movie/{movieName}")
+            return redirect(f"movie/name/{movieName}")
         else:
             for i in ABC:
                 rec.append(api.get_recent(i,request.form["movieYear"]))
@@ -31,17 +31,20 @@ def index():
 
     
 
-@app.route("/movie/<idn>", methods=["GET","POST"])
+@app.route("/movie/name/<idn>", methods=["GET","POST"])
 def detailde_view(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_name(idn)
     
+    try:
+        bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
+        listaBD = bd.res.fetchall()
+        listaComments = []
+        for i in listaBD:
+            listaComments.append([i[2],i[3],i[4]])
+    except Exception as e:
+        listaComments= [["Hmmm.Something went wrong. Try again pls"]]
     
-    bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
-    listaBD = bd.res.fetchall()
-    listaComments = []
-    for i in listaBD:
-            listaComments.append(i[2])
     
     
     
@@ -64,11 +67,31 @@ def detailde_view(idn):
 
 
 
-@app.route("/prueba/<id>")
-def prueba(id):
+@app.route("/movie/id/<idn>")
+def prueba(idn):
     api = ConexionApi(API_KEY)
-    details = api.search_by_id(id)
-    return render_template("prueba.html", prueba= details['imdbID'])        
+    details = api.search_by_id(idn)
+    bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
+    listaBD = bd.res.fetchall()
+    listaComments = []
+    for i in listaBD:
+            listaComments.append([i[2],i[3],i[4]])
+    
+    
+    
+    if request.method == "POST":
+        if request.form["rating"]== "":
+            insert_comment([details['imdbID'],request.form["commentsInput"],request.form["commentsName"],today_str])
+        
+        else:
+            insert_rating([request.form["movieID"], request.form["rating"]])
+            print(request.form)
+        
+        return render_template("movie_view.html", data = details,  comments = listaComments)
+    
+    else:
+        
+        return render_template("movie_view.html", data = details, comments = listaComments)        
         
             
         

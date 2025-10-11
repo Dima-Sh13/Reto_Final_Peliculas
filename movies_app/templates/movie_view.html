@@ -83,7 +83,8 @@
                                     <div class="col">
                                         <ul class="list-group list-group-flush overflow-auto" style="max-height: 180px;">
                                             {% for i in comments %}
-                                            <li class="list-group-item">"{{ i }}"</li>
+                                                
+                                            <li class="list-group-item">"{{ i[0] }}" - {{ i[1] }}  <p class="date-comment">{{ i[2] }}</p> </li>
                                             {% endfor %}    
                                         </div>
                                     </div>

@@ -13,13 +13,13 @@ def index():
     
     api = ConexionApi(API_KEY)
     rec =[]
-    errorMes = ""
+    message = f"Recent movies from {today.year}"
     if request.method == "GET":
         for i in ABC:
             rec.append(api.get_recent(i,"2025"))
 
             
-        return render_template("index.html", recent = rec)
+        return render_template("index.html", recent = rec, msg = message)
     else:
         if request.form["movieYear"] == "":
             
@@ -29,19 +29,19 @@ def index():
             movieYear = int(request.form["movieYear"])
             if movieYear < 1920 or movieYear > 2025:
                 movieYear = 2025
-                errorMes = "The selected year is not valid, showing movies from 2025"
+                message = "The selected year is not valid, showing movies from 2025"
             for i in ABC:
                 rec.append(api.get_recent(i,str(movieYear)))
 
-            return render_template("index.html", recent = rec, error = errorMes)    
+            return render_template("index.html", recent = rec, msg = message)    
         
         else:
             movieYear = int(request.form["movieYear"])
-            if movieYear < 1920 or movieYear > 2025:
-                movieYear = 2025
-                errorMes = "The selected year is not valid, showing movies from 2025" 
+            if movieYear < 1920 or movieYear > today.year:
+                movieYear = today.year
+                message = f"The selected year is not valid, showing movies from {today.year}" 
             rec.append(api.get_recent(request.form["movieName"],str(movieYear)))
-            return render_template("index.html", recent = rec, error = errorMes)
+            return render_template("index.html", recent = rec, msg = message)
 
 
 

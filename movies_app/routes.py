@@ -10,12 +10,13 @@ today_str = fecha_str = today.strftime("%d-%m-%Y")
 
 @app.route("/", methods=["GET","POST"])
 def index():
+    
     api = ConexionApi(API_KEY)
     rec =[]
     errorMes = ""
     if request.method == "GET":
-        #for i in ABC:
-            #rec.append(api.get_recent(i,"2025"))
+        for i in ABC:
+            rec.append(api.get_recent(i,"2025"))
 
             
         return render_template("index.html", recent = rec)
@@ -34,7 +35,8 @@ def index():
 
             return render_template("index.html", recent = rec, error = errorMes)    
 
-    
+
+
 
 @app.route("/movie/name/<idn>", methods=["GET","POST"])
 def detailde_view(idn):
@@ -85,11 +87,9 @@ def detailed_view_list(idn):
     details = api.search_by_id(idn)
     bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
     listaBD = bd.res.fetchall()
-    
+    bdr = ConexionBd(f"SELECT rating from ratings where movie_id = '{details['imdbID']}'")
+    listaComments = bd.get_comments(details)
 
-    listaComments = []
-    for i in listaBD:
-            listaComments.append([i[2],i[3],i[4]])
     
     
     
@@ -98,14 +98,19 @@ def detailed_view_list(idn):
             bd.insert_comment([details['imdbID'],request.form["commentsInput"],request.form["commentsName"],today_str])
             return redirect(f"/movie/id/{idn}")
         else:
-            bd.insert_rating([request.form["movieID"], request.form["rating"], today_str])
+            bd.insert_rating([request.form["movieID"], request.form["rating"],today_str])
             return redirect(f"/movie/id/{idn}")
         
         
     
     else:
         
-        return render_template("movie_view.html", data = details, comments = listaComments)        
+        try:
+            ratingUser = bdr.get_rating(details)
+        except ZeroDivisionError:
+            ratingUser = 0
+        
+        return render_template("movie_view.html", data = details, comments = listaComments, Urating = ratingUser)        
         
             
         

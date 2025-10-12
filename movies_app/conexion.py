@@ -54,7 +54,7 @@ class ConexionBd():
         self.con.close()    
         
     def insert_rating(self, registroForm):
-        self.res = self.cur.execute(f"INSERT INTO ratings (movie_id, rating) VALUES ('{registroForm[0]}', '{registroForm[1]}')")
+        self.res = self.cur.execute(f"INSERT INTO ratings (movie_id, rating, date) VALUES ('{registroForm[0]}', '{registroForm[1]}','{registroForm[2]}')")
         self.con.commit()
         self.con.close()
 

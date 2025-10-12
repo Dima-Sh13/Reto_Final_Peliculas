@@ -1,6 +1,6 @@
 from movies_app import app
 from flask import jsonify, render_template, request, redirect
-from movies_app.models import *
+from movies_app.conexion import *
 from config import *
 from datetime import date
 
@@ -59,7 +59,7 @@ def detailde_view(idn):
             return redirect(f"/movie/name/{idn}")
         
         else:
-            bd.insert_rating([request.form["movieID"], request.form["rating"]])
+            bd.insert_rating([request.form["movieID"], request.form["rating"],today_str])
             return redirect(f"/movie/name/{idn}")
         
             
@@ -98,7 +98,7 @@ def detailed_view_list(idn):
             bd.insert_comment([details['imdbID'],request.form["commentsInput"],request.form["commentsName"],today_str])
             return redirect(f"/movie/id/{idn}")
         else:
-            bd.insert_rating([request.form["movieID"], request.form["rating"]])
+            bd.insert_rating([request.form["movieID"], request.form["rating"], today_str])
             return redirect(f"/movie/id/{idn}")
         
         

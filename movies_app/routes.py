@@ -25,7 +25,7 @@ def index():
             
             movieName = api.get_name(request.form["movieName"])
             return redirect(f"movie/name/{movieName}")
-        else:
+        elif request.form["movieName"] == "":
             movieYear = int(request.form["movieYear"])
             if movieYear < 1920 or movieYear > 2025:
                 movieYear = 2025
@@ -34,7 +34,14 @@ def index():
                 rec.append(api.get_recent(i,str(movieYear)))
 
             return render_template("index.html", recent = rec, error = errorMes)    
-
+        
+        else:
+            movieYear = int(request.form["movieYear"])
+            if movieYear < 1920 or movieYear > 2025:
+                movieYear = 2025
+                errorMes = "The selected year is not valid, showing movies from 2025" 
+            rec.append(api.get_recent(request.form["movieName"],str(movieYear)))
+            return render_template("index.html", recent = rec, error = errorMes)
 
 
 

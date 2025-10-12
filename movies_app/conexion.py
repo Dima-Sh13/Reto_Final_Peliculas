@@ -57,7 +57,28 @@ class ConexionBd():
         self.res = self.cur.execute(f"INSERT INTO ratings (movie_id, rating) VALUES ('{registroForm[0]}', '{registroForm[1]}')")
         self.con.commit()
         self.con.close()
+
+    def get_comments(self,registroform):
+        listaComments = []
+        self.res = self.cur.execute("SELECT * FROM comments WHERE movie_id = ?", (registroform['imdbID'],))
+        listaBD = self.res.fetchall()
         
-       
+        for i in listaBD:
+            listaComments.append([i[2],i[3],i[4]])
+        return listaComments
+
+    def get_rating(self, registroform):
+        ratingUser = 0
+        listaRating = self.res.fetchall()
+        
+        for i in listaRating:
+            for x in i:    
+                ratingUser += x
+        ratingUser = ratingUser // len(listaRating)
+
+        return ratingUser
+           
+        
+    
     
     

@@ -12,7 +12,7 @@ today_str = fecha_str = today.strftime("%d-%m-%Y")
 def index():
     api = ConexionApi(API_KEY)
     rec =[]
-    
+    errorMes = ""
     if request.method == "GET":
         #for i in ABC:
             #rec.append(api.get_recent(i,"2025"))
@@ -28,10 +28,11 @@ def index():
             movieYear = int(request.form["movieYear"])
             if movieYear < 1920 or movieYear > 2025:
                 movieYear = 2025
+                errorMes = "The selected year is not valid, showing movies from 2025"
             for i in ABC:
                 rec.append(api.get_recent(i,str(movieYear)))
 
-    return render_template("index.html", recent = rec)    
+            return render_template("index.html", recent = rec, error = errorMes)    
 
     
 
@@ -42,16 +43,15 @@ def detailde_view(idn):
     
     try:
         bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
-        listaBD = bd.res.fetchall()
-        listaComments = []
-        for i in listaBD:
-            listaComments.append([i[2],i[3],i[4]])
+        bdr = ConexionBd(f"SELECT rating from ratings where movie_id = '{details['imdbID']}'")
+        try:
+            ratingUser = bdr.get_rating(details)
+        except ZeroDivisionError:
+            ratingUser = 0
+        listaComments = bd.get_comments(details)
+    
     except Exception as e:
-        return render_template("error.html")
-      
-    
-    
-    
+        return render_template("error.html", error= e)
     
     if request.method == "POST":
         if request.form["rating"]== "":
@@ -62,11 +62,17 @@ def detailde_view(idn):
             bd.insert_rating([request.form["movieID"], request.form["rating"]])
             return redirect(f"/movie/name/{idn}")
         
-        return render_template("movie_view.html", data = details,  comments = listaComments)
-    
+            
     else:
         
-        return render_template("movie_view.html", data = details, comments = listaComments)  
+        return render_template("movie_view.html", data = details, comments = listaComments, Urating = ratingUser)  
+      
+   
+    
+    
+    
+    
+    
 
 
      
@@ -74,11 +80,13 @@ def detailde_view(idn):
 
 
 @app.route("/movie/id/<idn>", methods = ["GET","POST"])
-def prueba(idn):
+def detailed_view_list(idn):
     api = ConexionApi(API_KEY)
     details = api.search_by_id(idn)
     bd = ConexionBd(f"SELECT * from comments where movie_id = '{details['imdbID']}'")
     listaBD = bd.res.fetchall()
+    
+
     listaComments = []
     for i in listaBD:
             listaComments.append([i[2],i[3],i[4]])

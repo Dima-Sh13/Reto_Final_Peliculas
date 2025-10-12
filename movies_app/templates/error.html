@@ -1,11 +1,18 @@
-<!DOCTYPE html>
+<!doctype html> 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Error</title> 
+  
 </head>
-<body>
-    <p class="error-text">SOMETHING WENT WRONG. TRY AGAIN  </p>
+<body> 
+  <main class="wrap" role="main" aria-labelledby="title"> 
+    <img class="hero" src="/static/img/wtw.png" alt="Error illustration"> 
+    <h1 id="title">Something went wrong, try again</h1> 
+    
+    <a class="btn" href="/">Try again!</a> 
+  </main>
 </body>
 </html>

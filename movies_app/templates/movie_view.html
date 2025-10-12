@@ -23,8 +23,8 @@
                         <div class="col-sm-3">
                             <img class="img-fluid" src="{{ data['Poster'] }}" alt=" {{ data['Title'] }}"><br>
                             <form  method="post">
-                                <div class="stars">
-                                    <p>({{ data["imdbRating"] }})</p>
+                                <div class="stars" style="padding-top: 15px;">
+                                    <p>(IMDB:{{ data["imdbRating"] }} Users:{{ Urating }})</p>
                                     <span class="fa fa-star" data-value="10"></span>
                                     <span class="fa fa-star" data-value="8"></span>
                                     <span class="fa fa-star" data-value="6"></span>

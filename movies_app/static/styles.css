@@ -149,3 +149,39 @@
   width: 100% !important;            
   height: 100% !important;           
 }
+
+body { margin: 0; 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background:#FDFBF7; 
+  color:black; 
+  font-family: system-ui, sans-serif; 
+
+}
+    
+.wrap { text-align: center; 
+  padding: 24px; 
+  max-width: 620px; 
+}
+    
+.hero { display:block; 
+  margin: 0 auto 24px; 
+  max-width: 100%; 
+  height: auto; 
+}
+    
+h1 { font-size: clamp(24px, 4vw, 42px); 
+  margin: 0 0 16px; 
+}
+    
+.btn { display:inline-block; 
+  padding:12px 18px; 
+  border-radius:10px; 
+  text-decoration:none; 
+  background:#22c55e; 
+  color:#0b0d10; 
+  font-weight:700; 
+
+}
